@@ -42,11 +42,15 @@ class CoinFlipState extends State<CoinFlip> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.asset(
-              coinSide == 0
-                  ? 'assets/images/bleu_head.jpg'
-                  : 'assets/images/cat_back.jpg',
-              width: 300,
+            ClipOval(
+              child: Image.asset(
+                coinSide == 0
+                    ? 'assets/images/bleu_head_2.jpg'
+                    : 'assets/images/bleu_tails_2.jpg',
+                width: 300,
+                height: 300,
+                fit: BoxFit.cover,
+              ),
             ),
             const SizedBox(height: 15),
             ElevatedButton(

@@ -54,6 +54,9 @@ flutter:
   assets:
     - assets/images/bleu_head.jpg
     - assets/images/cat_back.jpg
+    - assets/images/bleu_head_2.jpg
+    - assets/images/bleu_tails_2.jpg
+    
   
 
   # The following line ensures that the Material Icons font is
