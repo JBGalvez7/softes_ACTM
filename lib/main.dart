@@ -10,10 +10,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const CoinFlip(),
-    );
+    return MaterialApp(debugShowCheckedModeBanner: false, home: CoinFlip());
   }
 }
 
@@ -26,77 +23,57 @@ class CoinFlip extends StatefulWidget {
 
 class CoinFlipState extends State<CoinFlip> {
   int coinSide = 0;
-  String result = 'Tap to Flip';
+  String result = '';
 
   void flipCoin() {
     setState(() {
       coinSide = Random().nextInt(2);
       result = coinSide == 0 ? 'Heads' : 'Tails';
+      print('Coin side: $coinSide, Result: $result');
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 229, 198, 168),
-      appBar: AppBar(
-        title: const Text("Coin Flip"),
-        backgroundColor: const Color.fromARGB(255, 47, 71, 155),
-      ),
+      backgroundColor: const Color.fromARGB(255, 224, 182, 142),
+      appBar: AppBar(title: const Text("Coin Flip")),
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SizedBox(
-                width: 300,
-                height: 300,
-                child: Image.asset(
-                  coinSide == 0
-                      ? 'assets/images/bleu_head.jpg'
-                      : 'assets/images/cat_back.jpg',
-                  fit: BoxFit.contain,
-                  errorBuilder: (context, error, stackTrace) {
-                    return const Icon(
-                      Icons.broken_image,
-                      size: 100,
-                      color: Colors.red,
-                    );
-                  },
-                ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              coinSide == 0
+                  ? 'assets/images/bleu_head.jpg'
+                  : 'assets/images/cat_back.jpg',
+              width: 300,
+            ),
+            const SizedBox(height: 15),
+            ElevatedButton(
+              onPressed: flipCoin,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(255, 104, 131, 228),
+                foregroundColor: const Color.fromARGB(255, 207, 46, 46),
               ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: flipCoin,
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: const Color.fromARGB(255, 47, 71, 155),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 15,
-                  ),
-                  textStyle: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                child: const Text("Flip Coin"),
-              ),
-              const SizedBox(height: 20),
-              Text(
-                result,
-                style: const TextStyle(
-                  fontSize: 24,
+              child: const Text(
+                "Flip Coin",
+                style: TextStyle(
+                  fontSize: 14,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
               ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              result,
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+          ],
         ),
       ),
     );
